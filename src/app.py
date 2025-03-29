@@ -1657,7 +1657,11 @@ class CustomExport:
                 timedelta(seconds=(time.time() - category_start_time))
             ),
         )
-        return all_uploaded_resources
+        return self.process_category_result(
+            namedtuple("CategoryResult", ["category", "uploaded_resources"])(
+                category=category, uploaded_resources=all_uploaded_resources
+            )
+        )
 
     def resource_to_response(self, uploaded_resources, category):
         """
